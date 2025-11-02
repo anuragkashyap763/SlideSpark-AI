@@ -1,2 +1,2 @@
-# Lovely-PPT
+# SlideSpark AI
 AI PPT Builder
