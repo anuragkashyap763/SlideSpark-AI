@@ -63,8 +63,8 @@ export default function Auth() {
         <CardHeader className="text-center">
           <div className="flex items-center justify-center gap-2 mb-2">
             <Sparkles className="w-8 h-8 text-primary" />
-            <CardTitle className="text-3xl bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
-              AI Slide Generator
+            <CardTitle className="text-3xl bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-[#7c3bed]">
+              SlideSpark AI
             </CardTitle>
           </div>
           <CardDescription className="text-base">
