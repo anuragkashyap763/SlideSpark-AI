@@ -1,0 +1,10 @@
+project_id = "ybpnugmcnslbylhqaxvb"
+
+[functions.generate-slides]
+verify_jwt = true
+
+[functions.update-slides]
+verify_jwt = true
+
+[functions.export-pptx]
+verify_jwt = true
