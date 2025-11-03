@@ -141,9 +141,9 @@
 //                   onKeyPress={(e) => e.key === 'Enter' && !loading && handleGenerate()}
 //                   className="bg-background/50"
 //                 />
-//                 <Button 
-//                   onClick={handleGenerate} 
-//                   disabled={loading} 
+//                 <Button
+//                   onClick={handleGenerate}
+//                   disabled={loading}
 //                   className="w-full bg-gradient-to-r from-primary to-primary-glow hover:opacity-90 transition-opacity"
 //                 >
 //                   {loading ? (
@@ -196,8 +196,8 @@
 //                 <Card className="p-4 bg-gradient-to-br from-card to-card/50 shadow-elegant border-primary/10">
 //                   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
 //                     <h2 className="text-xl font-semibold">{currentPresentation.title}</h2>
-//                     <Button 
-//                       onClick={handleExport} 
+//                     <Button
+//                       onClick={handleExport}
 //                       disabled={exporting}
 //                       className="bg-gradient-to-r from-primary to-primary-glow hover:opacity-90"
 //                     >
@@ -231,28 +231,6 @@
 //     </div>
 //   );
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useEffect, useState } from "react";
 // import { createClient } from "@supabase/supabase-js";
@@ -440,29 +418,16 @@
 //   );
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-import { useState, useEffect } from 'react';
-import { useAuth } from '@/hooks/useAuth';
-import { supabase } from '@/integrations/supabase/client';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card } from '@/components/ui/card';
-import { toast } from '@/hooks/use-toast';
-import { Loader2, Send, Download, LogOut, Sparkles } from 'lucide-react';
-import { SlidePreview } from '@/components/SlidePreview';
-import { ThemeToggle } from '@/components/ThemeToggle';
+import { useState, useEffect } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card } from "@/components/ui/card";
+import { toast } from "@/hooks/use-toast";
+import { Loader2, Send, Download, LogOut, Sparkles } from "lucide-react";
+import { SlidePreview } from "@/components/SlidePreview";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface Slide {
   title: string;
@@ -480,10 +445,11 @@ interface Presentation {
 
 export default function Dashboard() {
   const { user, signOut } = useAuth();
-  const [prompt, setPrompt] = useState('');
+  const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const [exporting, setExporting] = useState(false);
-  const [currentPresentation, setCurrentPresentation] = useState<Presentation | null>(null);
+  const [currentPresentation, setCurrentPresentation] =
+    useState<Presentation | null>(null);
   const [presentations, setPresentations] = useState<Presentation[]>([]);
 
   // ✅ Load presentations for current user
@@ -493,12 +459,12 @@ export default function Dashboard() {
 
   const loadPresentations = async () => {
     const { data, error } = await supabase
-      .from('presentations')
-      .select('*')
-      .order('created_at', { ascending: false });
+      .from("presentations")
+      .select("*")
+      .order("created_at", { ascending: false });
 
     if (error) {
-      console.error('Error loading presentations:', error);
+      console.error("Error loading presentations:", error);
     } else {
       setPresentations(data || []);
     }
@@ -507,32 +473,35 @@ export default function Dashboard() {
   // ✅ Generate slides via Edge Function
   const handleGenerate = async () => {
     if (!prompt.trim()) {
-      toast({ title: 'Please enter a prompt', variant: 'destructive' });
+      toast({ title: "Please enter a prompt", variant: "destructive" });
       return;
     }
 
     setLoading(true);
     try {
       // ✅ Securely invoke Supabase Function (includes JWT automatically)
-      const { data, error } = await supabase.functions.invoke('generate-slides', {
-        body: { prompt, title: prompt.substring(0, 50) },
-      });
+      const { data, error } = await supabase.functions.invoke(
+        "generate-slides",
+        {
+          body: { prompt, title: prompt.substring(0, 50) },
+        }
+      );
 
       if (error) throw error;
 
       if (!data || !data.presentation) {
-        throw new Error('No presentation data returned from server.');
+        throw new Error("No presentation data returned from server.");
       }
 
       setCurrentPresentation(data.presentation);
-      toast({ title: 'Presentation generated successfully!' });
+      toast({ title: "Presentation generated successfully!" });
       loadPresentations();
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
       toast({
-        title: 'Error generating presentation',
-        description: error instanceof Error ? error.message : 'Unknown error',
-        variant: 'destructive',
+        title: "Error generating presentation",
+        description: error instanceof Error ? error.message : "Unknown error",
+        variant: "destructive",
       });
     } finally {
       setLoading(false);
@@ -540,26 +509,70 @@ export default function Dashboard() {
   };
 
   // ✅ Export slides to PPTX via Edge Function
+  // const handleExport = async () => {
+  //   if (!currentPresentation) return;
+
+  //   setExporting(true);
+  //   try {
+  //     const { data, error } = await supabase.functions.invoke('export-pptx', {
+  //       body: { presentationId: currentPresentation.id },
+  //     });
+
+  //     if (error) throw error;
+  //     if (!data?.url) throw new Error('No export URL returned.');
+
+  //     window.open(data.url, '_blank');
+  //     toast({ title: 'Presentation exported successfully!' });
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //     toast({
+  //       title: 'Error exporting presentation',
+  //       description: error instanceof Error ? error.message : 'Unknown error',
+  //       variant: 'destructive',
+  //     });
+  //   } finally {
+  //     setExporting(false);
+  //   }
+  // };
+
   const handleExport = async () => {
     if (!currentPresentation) return;
 
     setExporting(true);
     try {
-      const { data, error } = await supabase.functions.invoke('export-pptx', {
+      const { data, error } = await supabase.functions.invoke("export-pptx", {
         body: { presentationId: currentPresentation.id },
       });
 
       if (error) throw error;
-      if (!data?.url) throw new Error('No export URL returned.');
+      if (!data?.url) throw new Error("No export URL returned.");
 
-      window.open(data.url, '_blank');
-      toast({ title: 'Presentation exported successfully!' });
+      // ✅ Automatically download the file
+      const fileUrl = data.url;
+      const fileName = `${currentPresentation.title || "presentation"}.pptx`;
+
+      const response = await fetch(fileUrl);
+      const blob = await response.blob();
+
+      const downloadLink = document.createElement("a");
+      downloadLink.href = URL.createObjectURL(blob);
+      downloadLink.download = fileName;
+      downloadLink.style.display = "none";
+
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+
+      // Clean up
+      URL.revokeObjectURL(downloadLink.href);
+      document.body.removeChild(downloadLink);
+
+      toast({ title: "Presentation downloaded successfully!" });
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
       toast({
-        title: 'Error exporting presentation',
-        description: error instanceof Error ? error.message : 'Unknown error',
-        variant: 'destructive',
+        title: "Error exporting presentation",
+        description: error instanceof Error ? error.message : "Unknown error",
+        variant: "destructive",
       });
     } finally {
       setExporting(false);
@@ -606,7 +619,9 @@ export default function Dashboard() {
                   placeholder="Describe your presentation... (e.g., 'Create a presentation about climate change')"
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && !loading && handleGenerate()}
+                  onKeyPress={(e) =>
+                    e.key === "Enter" && !loading && handleGenerate()
+                  }
                   className="bg-background/50"
                 />
                 <Button
@@ -644,8 +659,8 @@ export default function Dashboard() {
                       onClick={() => setCurrentPresentation(pres)}
                       className={`w-full text-left p-4 rounded-lg border transition-all duration-200 ${
                         currentPresentation?.id === pres.id
-                          ? 'bg-primary text-primary-foreground shadow-glow scale-[1.02]'
-                          : 'hover:bg-accent hover:scale-[1.01]'
+                          ? "bg-primary text-primary-foreground shadow-glow scale-[1.02]"
+                          : "hover:bg-accent hover:scale-[1.01]"
                       }`}
                     >
                       <p className="font-medium truncate">{pres.title}</p>
@@ -708,6 +723,3 @@ export default function Dashboard() {
     </div>
   );
 }
-
-
-
