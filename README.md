@@ -1,87 +1,73 @@
-# ⚡️ SlideSpark AI — Your AI-Powered Presentation Builder
+# Welcome to your Lovable project
 
-**SlideSpark AI** transforms your ideas into stunning, professional PowerPoint presentations — instantly.  
-Simply enter a topic or prompt, and our AI automatically generates slides with structured content, visuals, and exportable `.pptx` files.
+## Project info
 
----
+**URL**: https://lovable.dev/projects/7e210788-ef85-41b9-9c83-c8cca924770e
 
-## 🚀 Key Features
+## How can I edit this code?
 
-### 🎨 AI-Generated Slides
-- Describe your topic and let the AI build your entire presentation.
-- Automatically generates titles, bullet points, and speaker notes.
+There are several ways of editing your application.
 
-### 🖼️ Visuals & Design
-- Each slide includes relevant visuals and modern layout styling.
-- Future-ready for auto-generated charts and graphs.
+**Use Lovable**
 
-### 💾 One-Click Export
-- Export your generated presentation as a PowerPoint `.pptx` file instantly.
+Simply visit the [Lovable Project](https://lovable.dev/projects/7e210788-ef85-41b9-9c83-c8cca924770e) and start prompting.
 
-### 🧠 Real-Time Streaming
-- Watch the slide generation process live — just like ChatGPT typing in real time.
+Changes made via Lovable will be committed automatically to this repo.
 
-### 🔐 Secure & Personalized
-- Built with **Supabase Auth** for safe login and per-user storage.
-- Your presentations are private and stored securely in Supabase.
+**Use your preferred IDE**
 
-### 🌙 Beautiful Interface
-- Responsive and elegant design with **Tailwind CSS + shadcn-ui**.
-- Built-in dark/light mode toggle for a sleek experience.
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
----
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-## 🧩 Tech Stack
+Follow these steps:
 
-| Layer | Technology |
-|-------|-------------|
-| Frontend | React (TypeScript) + Vite |
-| Styling | Tailwind CSS + shadcn-ui |
-| Backend | Supabase (Edge Functions, Auth, Database, Storage) |
-| AI Engine | Groq API (`openai/gpt-oss-120b`) |
-| Deployment | Vercel / Supabase Edge Hosting |
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
 
----
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
 
-## ⚙️ Getting Started
+# Step 3: Install the necessary dependencies.
+npm i
 
-```bash
-# 1️⃣ Clone the Repository
-git clone https://github.com/<your-username>/slidespark-ai.git
-cd slidespark-ai
-
-# 2️⃣ Install Dependencies
-npm install
-
-# 3️⃣ Configure Environment Variables
-# Create a .env.local file in your project root and add:
-VITE_SUPABASE_URL=<your-supabase-url>
-VITE_SUPABASE_ANON_KEY=<your-supabase-anon-key>
-SUPABASE_SERVICE_ROLE_KEY=<your-service-role-key>
-GROQ_API_KEY=<your-groq-api-key>
-
-# 4️⃣ Run the Development Server
+# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
-
-# Your app will be live at:
-# 👉 http://localhost:5173
 ```
----
 
-## 🧱 Project Structure
-<img width="594" height="153" alt="Screenshot 2025-11-04 at 3 13 38 AM" src="https://github.com/user-attachments/assets/025cb05f-08f0-4c0c-9067-b868b2074077" />
+**Edit a file directly in GitHub**
 
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
+**Use GitHub Codespaces**
 
----
-## 💡 How to Use
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-<img width="593" height="349" alt="Screenshot 2025-11-04 at 3 14 48 AM" src="https://github.com/user-attachments/assets/4c1ec4f0-c7bf-4ab9-a6f4-34851277ec66" />
+## What technologies are used for this project?
 
----
+This project is built with:
 
-### 🌐 Deployment
-<img width="554" height="250" alt="Screenshot 2025-11-04 at 3 15 38 AM" src="https://github.com/user-attachments/assets/dc710428-ed5a-45e3-b9e0-50abda517bf3" />
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
 
+## How can I deploy this project?
 
+Simply open [Lovable](https://lovable.dev/projects/7e210788-ef85-41b9-9c83-c8cca924770e) and click on Share -> Publish.
 
+## Can I connect a custom domain to my Lovable project?
+
+Yes, you can!
+
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
