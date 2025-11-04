@@ -3,6 +3,8 @@
 **SlideSpark AI** transforms your ideas into stunning, professional PowerPoint presentations — instantly.  
 Simply enter a topic or prompt, and our AI automatically generates slides with structured content, visuals, and exportable `.pptx` files.
 
+## Site Link: https://slide-spark-ai.vercel.app/
+
 ---
 ## Note : When you will Sign Up for the first and verify your account via your email , it will show "This site can’t be reached" , but that gets verified. Will fix that issue in few days.
 ---
